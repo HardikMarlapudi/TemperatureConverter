@@ -1,28 +1,27 @@
-let tempDisplay = document.querySelector('.tempDisplay');
+const tempDisplay = document.querySelector('.tempDisplay');
+const inputNum = document.getElementById('inputNum');
 const submitBtn = document.getElementById("submitBtn");
 const fahrenheit = document.getElementById("fahrenheit");
 const celsius = document.getElementById("celsius");
 
 submitBtn.onclick = function() {
-    const inputValue = document.getElementById('tempNum');
+    const inputValue = parseFloat(inputNum.value); // Converts input to number
 
     if(isNaN(inputValue)) {
-        tempDisplay.textContent = "Please enter a valid number";
-        return;
+        tempDisplay.textContent = "Please enter a number.";
     }
 
     if(fahrenheit.checked){
         const result = (inputValue * 9/5) + 32;
-        tempDisplay.textContent = `${result.toFixed(2)} °F`;
-        return;
+        tempDisplay.textContent = `${result.toFixed(2)}°F`;
     }
 
-    else if(celsius.checked) {
+    else if(celsius.checked){
         const result = (inputValue - 32) * 5/9;
-        tempDisplay.textContent = `${result.toFixed(2)} °C`;
+        tempDisplay.textContent = `${result.toFixed(2)}°C`;
     }
 
     else {
-        window.alert("Please enter a valid number");
+        window.alert("Please enter a number and select a unit");
     }
 }
