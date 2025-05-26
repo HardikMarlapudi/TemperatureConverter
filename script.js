@@ -7,7 +7,7 @@ const celsius = document.getElementById("celsius");
 submitBtn.onclick = function() {
     const inputValue = parseFloat(inputNum.value); // Converts input to number
 
-    if(isNaN(inputValue)) {
+    if(!(inputValue)) {
         tempDisplay.textContent = "Please enter a number.";
     }
 
@@ -23,8 +23,17 @@ submitBtn.onclick = function() {
         tempDisplay.textContent = `${result.toFixed(2)}°C`;
     }
 
-    // An alert message warning the user to enter a value and select either Fahrenheit or Celsius
+    // An alert warning the user to enter a value and select either Fahrenheit or Celsius
     else {
         window.alert("Please enter a number and select a unit");
+    }
+
+    // If the user were to enter a letter instead of a valid number, an alert will show up warning the user to enter a number not a letter.
+    try {
+        if (isNaN(inputValue)) {
+            throw new Error("Please enter a valid number!!!");
+        }
+    } catch (error) {
+        window.alert("Please enter a valid number!!!");
     }
 }
